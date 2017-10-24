@@ -18,16 +18,22 @@ class ElasticsearchProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->publishes([
+            __DIR__.'/../config/elasticsearch.php' => config_path('elasticsearch.php'),
+        ]);
+
         $this->app->singleton(Client::class, function () {
             $client = ClientBuilder::create();
 
             $provider = CredentialProvider::fromCredentials(
-                new Credentials(env('AWS_KEY'), env('AWS_SECRET'))
+                new Credentials(config('elasticsearch.aws.key'), config('elasticsearch.aws.secret'))
             );
 
-            $handler = new ElasticsearchPhpHandler(env('AWS_REGION', 'eu-west-1'), $provider);
+            $handler = new ElasticsearchPhpHandler(config('elasticsearch.aws.region'), $provider);
 
-            return $client->setHandler($handler)->build();
+            return $client->setHandler($handler)
+                ->setHosts(config('elasticsearch.hosts'))
+                ->build();
         });
     }
 }
