@@ -6,7 +6,7 @@
   "require": {
     "php": ">=5.5.9",
     "illuminate/support": "5.*",
-    "laravel/scout": "^3.0"
+    "jsq/amazon-es-php": "^0.2.0"
   },
   "require-dev": {
     "orchestra/testbench": "~3.5.0",
@@ -21,13 +21,18 @@
   ],
   "autoload": {
     "psr-4": {
-      "PodPoint\\LaravelAmazonEs\\": "src/"
+      "PodPoint\\LaravelAmazonElasticsearch\\": "src/"
     }
+  },
+  "autoload-dev": {
+    "classmap": [
+      "tests/TestCase.php"
+    ]
   },
   "extra": {
     "laravel": {
       "providers": [
-        "PodPoint\\LaravelAmazonElasticsearch\\ServiceProvider"
+        "PodPoint\\LaravelAmazonElasticsearch\\Providers\\ElasticsearchProvider"
       ]
     }
   },

@@ -12,7 +12,7 @@ use Aws\ElasticsearchService\ElasticsearchPhpHandler;
 class ElasticsearchProvider extends ServiceProvider
 {
     /**
-     * Create a new ES client that uses signed AWS credentials.
+     * Create a new Elasticsearch client that uses signed AWS credentials.
      *
      * @return void
      */
